@@ -1,46 +1,61 @@
-# Getting Started with Create React App
+# trekYourWorld - Development
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Structure
 
-## Available Scripts
+```graphql
+├── src/
+│   ├── atoms/                   # Jotai atoms
+│   ├── assets/                  # Images, fonts, and other static assets
+|   ├── common/
+│   ├── components/              # Reusable components
+│   ├── containers/              # Higher-level components that manage state and logic
+│   ├── pages/                   # Top-level page components
+│   ├── services/                # API and data services
+│   ├── utils/                   # Utility functions
+│   ├── styles/                  # Global styles and CSS modules
+│   ├── App.tsx                  # Main application component
+│   ├── main.tsx                 # Entry point for the application
+│   └── ...                      # Other configuration files, tests, etc.
+```
 
-In the project directory, you can run:
+## Dev Guidelines
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Refer to the Project Structure while creating any new components.
+2. As this is a full typescript based project, please refer to
+   the [Do's and Dont's](https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html)
+3. We are using strict Typescript, so make sure to make all the components as `.tsx`
+4. Follow the [Guidelines](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup) provided
+   for `React + Typescript`.
+5. `Types or Interfaces` - Go through the links in order to better chose while implementing the components
+    * https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example#types-or-interfaces
+    * https://medium.com/@martin_hotell/interface-vs-type-alias-in-typescript-2-7-2a8f1777af4c
+6. Always use absolute imports such as `@/styles/style.css`. In case of any new alias to be configured, refer to
+   the `tsconfig.json` and configure the alias for the imports.
+    ```json
+    {
+        "compilerOptions": {
+            # Other options
+            ...,
+            "paths": {
+                # your new paths alias
+                "@components/*": [
+                    "src/components/*"
+                ]
+            },
+            ...
+        }
+    }
+    ```
+   and update the `vite.config.ts` to configure the alias like below (This is used for the build phase)
+    ```js
+    alias({
+      entries: [
+        { find: '@components', replacement: path.resolve(__dirname, './src/components') },
+        { find: '@common', replacement: path.resolve(__dirname, './src/common') },
+        { find: '@atoms', replacement: path.resolve(__dirname, './src/atoms') },
+        { find: '@utils', replacement: path.resolve(__dirname, './src/utils') },
+        { find: '@wailsjs', replacement: path.resolve(__dirname, './wailsjs') },
+        // ... other entries
+      ],
+    }),
+    ```
