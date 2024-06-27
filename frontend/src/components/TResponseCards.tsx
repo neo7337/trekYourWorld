@@ -1,13 +1,20 @@
+import { TrekSearchDto } from "@/types/types";
 import { Button } from "primereact/button";
 
-const TResponseCards: React.FC = () => {
+interface Props {
+  data: TrekSearchDto;
+}
+
+const TResponseCards: React.FC<Props> = (props: Props) => {
   return (
     <div
       className="shadow-2 p-3 h-full flex flex-column"
       style={{ borderRadius: "6px" }}
     >
-      <div className="text-900 font-medium text-xl mb-2">Basic</div>
-      <div className="text-600">Plan description</div>
+      <div className="text-900 font-medium text-xl mb-2">
+        {props.data.title}
+      </div>
+      <div className="text-600">{props.data.org}</div>
       <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
       <div className="flex align-items-center">
         <span className="font-bold text-2xl text-900">$9</span>

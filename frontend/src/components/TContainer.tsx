@@ -3,15 +3,34 @@ import { InputText } from "primereact/inputtext";
 import React, { KeyboardEvent, useState } from "react";
 import TIntroduction from "./TIntroduction";
 import TResponseCards from "./TResponseCards";
+import ApiService from "../services/api.service";
+import { TrekSearchDto } from "@/types/types";
+
+const svc = new ApiService();
 
 const TContainer: React.FC = () => {
   const [getStarted, setGetStarted] = useState(false);
   const [showIntroduction, setShowIntroduction] = useState(true);
+  const [searchValue, setSearchValue] = useState("");
+  const [results, setResults] = useState<TrekSearchDto[]>([]);
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       console.log("enter key pressed");
+      handleSearch();
     }
+  };
+
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    setSearchValue(event.currentTarget.value);
+  };
+
+  const handleSearch = async () => {
+    const response = await svc.get(
+      `api/v1/treks/search?trekName=${searchValue}`
+    );
+    console.log(response);
+    setResults(response);
   };
 
   const handleGetStartedClick = () => {
@@ -46,29 +65,23 @@ const TContainer: React.FC = () => {
               <InputText
                 placeholder="Enter your trek name!"
                 onKeyDown={handleKeyDown}
+                value={searchValue}
+                onChange={handleChange}
               />
-              <Button icon="pi pi-search" className="" />
+              <Button icon="pi pi-search" className="" onClick={handleSearch} />
             </div>
           </div>
 
           <div className="grid">
-            <div className="col-12 lg:col-4">
-              <div className="p-3 h-full">
-                <TResponseCards />
-              </div>
-            </div>
-
-            <div className="col-12 lg:col-4">
-              <div className="p-3 h-full">
-                <TResponseCards />
-              </div>
-            </div>
-
-            <div className="col-12 lg:col-4">
-              <div className="p-3 h-full">
-                <TResponseCards />
-              </div>
-            </div>
+            {results.map((result: TrekSearchDto, index: number) => {
+              return (
+                <div key={index} className="col-12 lg:col-4">
+                  <div className="p-3 h-full">
+                    <TResponseCards data={result} />
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
