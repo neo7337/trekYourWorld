@@ -1,7 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { TreksService } from './treks.service';
 import { TreksInformation } from './schemas/treksInformation.schema';
-import { TrekSearchDto } from './dto/trekSeach.dto';
+import { TrekSearchDto } from '../../../types/dto/TrekSearch.dto';
 
 @Controller('treks')
 export class TreksController {

@@ -4,7 +4,7 @@ import React, { KeyboardEvent, useState } from "react";
 import TIntroduction from "./TIntroduction";
 import TResponseCards from "./TResponseCards";
 import ApiService from "../services/api.service";
-import { TrekSearchDto } from "@/types/types";
+import { TrekSearchDto } from "../../../types/dto/TrekSearch.dto";
 
 const svc = new ApiService();
 

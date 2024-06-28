@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { TreksInformation } from './schemas/treksInformation.schema';
 import { Model } from 'mongoose';
-import { TrekSearchDto } from './dto/trekSeach.dto';
+import { TrekSearchDto } from '../../../types/dto/TrekSearch.dto';
 
 @Injectable()
 export class TreksService {
