@@ -1,4 +1,4 @@
-import { TrekSearchDto } from "@/types/types";
+import { TrekSearchDto } from "../../../types/dto/TrekSearch.dto";
 import { Button } from "primereact/button";
 
 interface Props {
@@ -14,7 +14,9 @@ const TResponseCards: React.FC<Props> = (props: Props) => {
       <div className="text-900 font-medium text-xl mb-2">
         {props.data.title}
       </div>
-      <div className="text-600">{props.data.org}</div>
+      <div className="text-600">
+        <span className="font-bold">Organiser:</span> {props.data.org}
+      </div>
       <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
       <div className="flex align-items-center">
         <span className="font-bold text-2xl text-900">$9</span>
@@ -23,20 +25,38 @@ const TResponseCards: React.FC<Props> = (props: Props) => {
       <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
       <ul className="list-none p-0 m-0 flex-grow-1">
         <li className="flex align-items-center mb-3">
-          <i className="pi pi-check-circle text-green-500 mr-2"></i>
-          <span>Arcu vitae elementum</span>
+          <i className="pi pi-map-marker text-green-500 mr-2"></i>
+          <span className="font-bold">Location: </span> <span></span>
         </li>
         <li className="flex align-items-center mb-3">
-          <i className="pi pi-check-circle text-green-500 mr-2"></i>
-          <span>Dui faucibus in ornare</span>
+          <i className="pi pi-wave-pulse text-green-500 mr-2"></i>
+          <span className="font-bold">Elevation: </span>
         </li>
         <li className="flex align-items-center mb-3">
-          <i className="pi pi-check-circle text-green-500 mr-2"></i>
-          <span>Morbi tincidunt augue</span>
+          <i className="pi pi-clock text-green-500 mr-2"></i>
+          <span className="font-bold">Duration: </span>
+        </li>
+        <li className="flex align-items-center mb-3">
+          <i className="pi pi-wrench text-green-500 mr-2"></i>
+          <span className="font-bold">Difficulty: </span>
         </li>
       </ul>
       <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
-      <Button label="Book Now" className="p-3 w-full mt-auto" />
+      <div className="flex justify-content-between flex-wrap">
+        <div className="flex align-items-center justify-content-center">
+          <Button
+            label="Show Details"
+            className="flex align-items-center justify-content-center p-3 mt-auto"
+            outlined
+          />
+        </div>
+        <div className="flex align-items-center justify-content-center">
+          <Button
+            label="Book Now"
+            className="flex align-items-center justify-content-center p-3 mt-auto"
+          />
+        </div>
+      </div>
     </div>
   );
 };

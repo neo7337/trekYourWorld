@@ -6,7 +6,7 @@ interface Props {
 
 const TIntroduction: React.FC<Props> = (props: Props) => {
   return (
-    <div className="flex flex-column pt-4 px-4 lg:px-8 overflow-hidden">
+    <div className="flex flex-column pt-4 w-full overflow-hidden">
       <div className="grid grid-nogutter surface-0 text-800">
         <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
           <section>

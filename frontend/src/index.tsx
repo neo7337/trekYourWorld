@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
-import "primereact/resources/themes/lara-light-cyan/theme.css";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 import "primeflex/primeflex.css";
 import "primeflex/themes/primeone-light.css";
 import "primeicons/primeicons.css";

@@ -1,14 +1,13 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { TreksService } from './treks.service';
-import { TreksInformation } from './schemas/treksInformation.schema';
-import { TrekSearchDto } from '../../../types/dto/TrekSearch.dto';
+import { TrekSearchDto } from '@/types/dto/TrekSearch.dto';
 
 @Controller('treks')
 export class TreksController {
   constructor(private readonly treksService: TreksService) {}
 
   @Get()
-  findAll(): Promise<TreksInformation[]> {
+  findAll(): Promise<string[]> {
     return this.treksService.findAll();
   }
 

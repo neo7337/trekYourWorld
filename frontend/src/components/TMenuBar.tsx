@@ -15,7 +15,7 @@ const TMenuBar: React.FC = () => {
   };
 
   return (
-    <div className="py-4 px-4 mx-0 md:mx-6 lg:mx-8 lg:px-8 flex align-items-center justify-content-between relative lg:static">
+    <div className="mx-0 flex align-items-center justify-content-between relative lg:static">
       <span className="flex align-items-center">
         {/* <img
           src={""}
@@ -68,7 +68,7 @@ const TMenuBar: React.FC = () => {
           <Button
             label="Register"
             rounded
-            className="border-none ml-5 font-light line-height-2 bg-blue-500 text-white"
+            className="border-none ml-5 font-light line-height-2 text-white"
           ></Button>
         </div>
       </div>
