@@ -50,6 +50,7 @@ export class TreksService {
           org: 1,
           title: '$treks.title',
           uuid: '$treks.uuid',
+          url: '$treks.url',
         },
       },
     ];
@@ -60,6 +61,7 @@ export class TreksService {
           org: trekInfo.org,
           title: trekInfo.title,
           uuid: trekInfo.uuid,
+          url: trekInfo.url,
         },
     );
   }

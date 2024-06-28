@@ -54,6 +54,7 @@ const TResponseCards: React.FC<Props> = (props: Props) => {
           <Button
             label="Book Now"
             className="flex align-items-center justify-content-center p-3 mt-auto"
+            onClick={() => window.open(props.data.url, "_blank")}
           />
         </div>
       </div>
