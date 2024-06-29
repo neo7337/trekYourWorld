@@ -1,0 +1,11 @@
+.landing-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+}
+
+.app-footer {
+    margin-top: auto;
+}
