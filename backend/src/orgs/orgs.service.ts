@@ -5,11 +5,11 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class OrgsService {
-  constructor(
-    @InjectModel(Organisations.name) private orgModel: Model<Organisations>,
-  ) {}
+    constructor(
+        @InjectModel(Organisations.name) private orgModel: Model<Organisations>,
+    ) { }
 
-  findAllOrganisations(): Promise<Organisations[]> {
-    return this.orgModel.find().exec();
-  }
+    findAllOrganisations(): Promise<Organisations[]> {
+        return this.orgModel.find().exec();
+    }
 }

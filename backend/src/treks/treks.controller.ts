@@ -4,17 +4,17 @@ import { TrekSearchDto } from '@/types/dto/TrekSearch.dto';
 
 @Controller('treks')
 export class TreksController {
-  constructor(private readonly treksService: TreksService) {}
+    constructor(private readonly treksService: TreksService) { }
 
-  @Get()
-  findAll(): Promise<string[]> {
-    return this.treksService.findAll();
-  }
+    @Get()
+    findAll(): Promise<string[]> {
+        return this.treksService.findAll();
+    }
 
-  @Get('search')
-  findByTrekName(
-    @Query('trekName') trekName?: string,
-  ): Promise<TrekSearchDto[]> {
-    return this.treksService.findByTrekName(trekName);
-  }
+    @Get('search')
+    findByTrekName(
+        @Query('trekName') trekName?: string,
+    ): Promise<TrekSearchDto[]> {
+        return this.treksService.findByTrekName(trekName);
+    }
 }

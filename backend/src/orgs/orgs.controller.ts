@@ -4,10 +4,10 @@ import { Organisations } from './schemas/orgs.schema';
 
 @Controller('orgs')
 export class OrgsController {
-  constructor(private readonly orgsService: OrgsService) {}
+    constructor(private readonly orgsService: OrgsService) { }
 
-  @Get()
-  findAllOrganisations(): Promise<Organisations[]> {
-    return this.orgsService.findAllOrganisations();
-  }
+    @Get()
+    findAllOrganisations(): Promise<Organisations[]> {
+        return this.orgsService.findAllOrganisations();
+    }
 }

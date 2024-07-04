@@ -5,12 +5,12 @@ import { OrgsController } from './orgs.controller';
 import { OrgsService } from './orgs.service';
 
 @Module({
-  imports: [
-    MongooseModule.forFeature([
-      { name: Organisations.name, schema: OrganisationSchema },
-    ]),
-  ],
-  controllers: [OrgsController],
-  providers: [OrgsService],
+    imports: [
+        MongooseModule.forFeature([
+            { name: Organisations.name, schema: OrganisationSchema },
+        ]),
+    ],
+    controllers: [OrgsController],
+    providers: [OrgsService],
 })
-export class OrgsModule {}
+export class OrgsModule { }
