@@ -25,7 +25,7 @@ export class TrekDocument extends Document {
     cost: string;
 
     @Prop()
-    difficulty: string;
+    difficulty: string[];
 
     @Prop()
     location: string;

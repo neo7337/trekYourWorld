@@ -3,10 +3,12 @@ import { classNames } from "primereact/utils";
 import { Ripple } from "primereact/ripple";
 import { Button } from "primereact/button";
 import { MutableRefObject, ReactNode, useRef, useState } from "react";
+import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
+import { Link } from "react-router-dom";
 
 type NodeRef = MutableRefObject<ReactNode>;
 
-const TMenuBar: React.FC = () => {
+const Navbar: React.FC = () => {
     const [isHidden, setIsHidden] = useState(false);
     const menuRef = useRef<HTMLElement | null>(null);
 
@@ -14,19 +16,33 @@ const TMenuBar: React.FC = () => {
         setIsHidden((prevState) => !prevState);
     };
 
+    const contactUsConfirm = () => {
+        confirmDialog({
+            message: 'Are you sure you want to proceed?',
+            header: 'Confirmation',
+            icon: 'pi pi-exclamation-triangle',
+            defaultFocus: 'accept',
+            accept: () => { },
+            reject: () => { }
+        });
+    };
+
     return (
         <div className="mx-0 flex align-items-center justify-content-between relative lg:static">
-            <span className="flex align-items-center">
-                {/* <img
-          src={""}
-          alt="trekYourWorld Logo"
-          height="50"
-          className="mr-0 lg:mr-2"
-        /> */}
-                <span className="text-900 font-medium text-2xl line-height-3 mr-8">
-                    trekYourWorld
+            <ConfirmDialog />
+            <Link to={'/'}>
+                <span className="flex align-items-center">
+                    {/* <img
+                    src={""}
+                    alt="trekYourWorld Logo"
+                    height="50"
+                    className="mr-0 lg:mr-2"
+                    /> */}
+                    <span className="text-900 font-medium text-2xl line-height-3 mr-8">
+                        trekYourWorld
+                    </span>
                 </span>
-            </span>
+            </Link>
             <StyleClass
                 nodeRef={menuRef as NodeRef}
                 selector="@next"
@@ -48,14 +64,13 @@ const TMenuBar: React.FC = () => {
             >
                 <ul className="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
                     <li>
-                        <a
-                            href="#home"
-                            onClick={toggleMenuItemClick}
+                        <span
+                            onClick={contactUsConfirm}
                             className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3"
                         >
                             <span>Contact Us</span>
                             <Ripple />
-                        </a>
+                        </span>
                     </li>
                 </ul>
                 <div className="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
@@ -76,4 +91,4 @@ const TMenuBar: React.FC = () => {
     );
 };
 
-export default TMenuBar;
+export default Navbar;

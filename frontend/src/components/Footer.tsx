@@ -1,4 +1,4 @@
-const TFooter: React.FC = () => {
+const Footer: React.FC = () => {
     return (
         <div className="py-4 px-4 mx-0 mt-auto lg:mx-8">
             <div className="flex flex-wrap justify-content-center align-content-center">
@@ -13,4 +13,4 @@ const TFooter: React.FC = () => {
     );
 };
 
-export default TFooter;
+export default Footer;

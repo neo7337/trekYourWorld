@@ -51,6 +51,11 @@ export class TreksService {
                     title: '$treks.title',
                     uuid: '$treks.uuid',
                     url: '$treks.url',
+                    elevation: '$treks.elevation',
+                    duration: '$treks.duration',
+                    cost: '$treks.cost',
+                    difficulty: '$treks.difficulty',
+                    location: '$treks.location'
                 },
             },
         ];
@@ -62,6 +67,11 @@ export class TreksService {
                     title: trekInfo.title,
                     uuid: trekInfo.uuid,
                     url: trekInfo.url,
+                    elevation: trekInfo.elevation,
+                    duration: trekInfo.duration,
+                    cost: trekInfo.cost,
+                    difficulty: trekInfo.difficulty,
+                    location: trekInfo.location
                 },
         );
     }

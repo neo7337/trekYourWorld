@@ -1,12 +1,21 @@
+import React from "react";
 import { Button } from "primereact/button";
+import { useNavigate } from "react-router-dom";
 
-interface Props {
-    getStartedCallback: () => void;
-}
+const Home: React.FC = () => {
 
-const TIntroduction: React.FC<Props> = (props: Props) => {
+    const navigate = useNavigate();
+
+    const handleGetStartedClick = () => {
+        navigate('/search'); 
+    }
+    
     return (
-        <div className="flex flex-column pt-4 w-full overflow-hidden">
+        <div
+            style={{ minHeight: "250px" }}
+            className="surface-0 flex flex-column pt-4 overflow-auto"
+        >
+            <div className="flex flex-column pt-4 w-full overflow-hidden">
             <div className="grid grid-nogutter surface-0 text-800">
                 <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
                     <section>
@@ -21,7 +30,7 @@ const TIntroduction: React.FC<Props> = (props: Props) => {
                             label="Get Started!"
                             icon="pi pi-bolt"
                             className="font-bold px-5 py-3 p-button-raised p-button-rounded white-space-nowrap"
-                            onClick={props.getStartedCallback}
+                            onClick={handleGetStartedClick}
                         />
                     </section>
                 </div>
@@ -39,7 +48,8 @@ const TIntroduction: React.FC<Props> = (props: Props) => {
                 </div>
             </div>
         </div>
+        </div>
     );
 };
 
-export default TIntroduction;
+export default Home;

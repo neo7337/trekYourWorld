@@ -1,20 +1,20 @@
 import React from "react";
-import TMenuBar from "./components/TMenuBar";
-import TFooter from "./components/TFooter";
-import TContainer from "./components/TContainer";
+import Navbar from "./components/Navbar";
+import AppRouter from "./AppRouter";
+import Footer from "./components/Footer";
 
 const App: React.FC = () => {
     return (
         <div className="surface-0 flex justify-content-center">
-            <div id="home" className="landing-wrapper overflow-hidden">
+            <div id="app" className="landing-wrapper overflow-hidden">
                 <div id="topBar">
-                    <TMenuBar />
+                    <Navbar />
                 </div>
                 <div id="container" className="app-container flex-grow-1">
-                    <TContainer />
+                    <AppRouter />
                 </div>
                 <div id="footer" className="app-footer">
-                    <TFooter />
+                    <Footer />
                 </div>
             </div>
         </div>

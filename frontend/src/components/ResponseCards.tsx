@@ -5,7 +5,19 @@ interface Props {
     data: TrekSearchDto;
 }
 
-const TResponseCards: React.FC<Props> = (props: Props) => {
+const ResponseCards: React.FC<Props> = (props: Props) => {
+
+    // format number to Indian rupee
+    let rupee = new Intl.NumberFormat('en-IN', {
+        style: 'currency',
+        currency: 'INR',
+    });
+
+    const formatCost = (cost: string) => {
+        const costNumb = parseFloat(cost.replace(/,/g, ''))
+        return rupee.format(costNumb)
+    }
+
     return (
         <div
             className="shadow-2 p-3 h-full flex flex-column"
@@ -19,26 +31,25 @@ const TResponseCards: React.FC<Props> = (props: Props) => {
             </div>
             <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
             <div className="flex align-items-center">
-                <span className="font-bold text-2xl text-900">$9</span>
-                <span className="ml-2 font-medium text-600">per month</span>
+                <span className="font-bold text-2xl text-900">{formatCost(props.data.cost)}</span>
             </div>
             <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
             <ul className="list-none p-0 m-0 flex-grow-1">
                 <li className="flex align-items-center mb-3">
                     <i className="pi pi-map-marker text-green-500 mr-2"></i>
-                    <span className="font-bold">Location: </span> <span></span>
+                    <span className="font-bold">Location: </span> <span>{props.data.location}</span>
                 </li>
                 <li className="flex align-items-center mb-3">
                     <i className="pi pi-wave-pulse text-green-500 mr-2"></i>
-                    <span className="font-bold">Elevation: </span>
+                    <span className="font-bold">Elevation: </span> <span>{props.data.elevation} ft</span>
                 </li>
                 <li className="flex align-items-center mb-3">
                     <i className="pi pi-clock text-green-500 mr-2"></i>
-                    <span className="font-bold">Duration: </span>
+                    <span className="font-bold">Duration: </span> <span>{props.data.duration} days</span>
                 </li>
                 <li className="flex align-items-center mb-3">
                     <i className="pi pi-wrench text-green-500 mr-2"></i>
-                    <span className="font-bold">Difficulty: </span>
+                    <span className="font-bold">Difficulty: </span> <span>{props.data.difficulty}</span>
                 </li>
             </ul>
             <hr className="mb-3 mx-0 border-top-1 border-bottom-none border-300 mt-auto" />
@@ -62,4 +73,4 @@ const TResponseCards: React.FC<Props> = (props: Props) => {
     );
 };
 
-export default TResponseCards;
+export default ResponseCards;
