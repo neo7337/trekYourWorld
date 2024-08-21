@@ -2,19 +2,14 @@ import { StyleClass } from "primereact/styleclass";
 import { classNames } from "primereact/utils";
 import { Ripple } from "primereact/ripple";
 import { Button } from "primereact/button";
-import { MutableRefObject, ReactNode, useRef, useState } from "react";
+import { MutableRefObject, ReactNode, useRef } from "react";
 import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import { Link } from "react-router-dom";
 
 type NodeRef = MutableRefObject<ReactNode>;
 
 const Navbar: React.FC = () => {
-    const [isHidden, setIsHidden] = useState(false);
     const menuRef = useRef<HTMLElement | null>(null);
-
-    const toggleMenuItemClick = () => {
-        setIsHidden((prevState) => !prevState);
-    };
 
     const contactUsConfirm = () => {
         confirmDialog({
@@ -57,8 +52,7 @@ const Navbar: React.FC = () => {
             </StyleClass>
             <div
                 className={classNames(
-                    "align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2",
-                    { hidden: isHidden }
+                    "align-items-center surface-0 flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full left-0 px-6 lg:px-0 z-2"
                 )}
                 style={{ top: "100%" }}
             >
