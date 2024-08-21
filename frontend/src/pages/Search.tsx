@@ -3,9 +3,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { TrekSearchDto } from "../../../types/dto/TrekSearch.dto";
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
 import { Toast } from "primereact/toast";
-import { showToast } from "../utils/utils";
 import { Button } from "primereact/button";
 import TResponseCards from "../components/ResponseCards";
+import { ProgressSpinner } from 'primereact/progressspinner';
 
 const svc = new ApiService();
 
@@ -15,6 +15,7 @@ const Search: React.FC = () => {
     const [results, setResults] = useState<TrekSearchDto[]>([]);
     const [searchItems, setSearchItems] = useState<string[]>([]);
     const [filteredSearch, setFilteredSearch] = useState<string[]>([]);
+    const [loadingResults, setLoadingResults] = useState<boolean>(false);
 
     useEffect(() => {
         svc.get(`api/v1/treks`).then((response) => setSearchItems(response));
@@ -38,21 +39,12 @@ const Search: React.FC = () => {
     };
 
     const handleSearch = async () => {
-        if (searchValue === "") {
-            showToast(
-                toast,
-                "warn",
-                "Warning",
-                "Please enter a trek to search!",
-                3000
-            );
-            setResults([]);
-        } else {
-            const response = await svc.get(
-                `api/v1/treks/search?trekName=${searchValue}`
-            );
-            setResults(response);
-        }
+        setLoadingResults(true);
+        const response = await svc.get(
+            `api/v1/treks/search?trekName=${searchValue}`
+        );
+        setLoadingResults(false);
+        setResults(response);
     };
 
     return (
@@ -80,7 +72,11 @@ const Search: React.FC = () => {
 
                 <div className="col-12">
                     <div className="grid grid-nogutter">
-                        {results.length === 0 ? (
+                        {loadingResults ? (
+                            <div className="col-12 text-align-center text-900 font-bold text-2xl mb-4 text-center">
+                                <ProgressSpinner />
+                            </div>
+                        ) : (results.length === 0 ? (
                             <div className="col-12 text-align-center text-900 font-bold text-2xl mb-4 text-center">
                                 No Results!
                             </div>
@@ -104,6 +100,7 @@ const Search: React.FC = () => {
                                     );
                                 }
                             )
+                        )
                         )}
                     </div>
                 </div>

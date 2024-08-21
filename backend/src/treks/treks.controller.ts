@@ -15,6 +15,6 @@ export class TreksController {
     findByTrekName(
         @Query('trekName') trekName?: string,
     ): Promise<TrekSearchDto[]> {
-        return this.treksService.findByTrekName(trekName);
+        return this.treksService.handleTrekSearch(trekName);
     }
 }
