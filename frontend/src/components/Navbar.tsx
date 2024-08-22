@@ -58,13 +58,14 @@ const Navbar: React.FC = () => {
             >
                 <ul className="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row cursor-pointer">
                     <li>
-                        <span
-                            onClick={contactUsConfirm}
-                            className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3"
-                        >
-                            <span>Contact Us</span>
-                            <Ripple />
-                        </span>
+                        <Link to={'/contact-us'}>
+                            <span
+                                className="p-ripple flex m-0 md:ml-5 px-0 py-3 text-900 font-medium line-height-3"
+                            >
+                                <span>Contact Us</span>
+                                <Ripple />
+                            </span>
+                        </Link>
                     </li>
                 </ul>
                 <div className="flex justify-content-between lg:block border-top-1 lg:border-top-none surface-border py-3 lg:py-0 mt-3 lg:mt-0">
