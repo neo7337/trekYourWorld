@@ -2,10 +2,24 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     margin: auto;
+}
+
+.topBar {
+    margin: 5px;
+}
+
+.app-container {
+    margin: 5px;
 }
 
 .app-footer {
     margin-top: auto;
+    margin: 5px;
+}
+
+.contact-us {
+    width: 80% !important;
+    margin: auto;
 }

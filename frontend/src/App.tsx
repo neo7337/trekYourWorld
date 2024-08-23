@@ -7,7 +7,7 @@ const App: React.FC = () => {
     return (
         <div className="surface-0 flex justify-content-center h-full">
             <div id="app" className="landing-wrapper overflow-hidden h-full">
-                <div id="topBar">
+                <div id="topBar" className="topBar">
                     <Navbar />
                 </div>
                 <div id="container" className="app-container flex-grow-1 flex-column">

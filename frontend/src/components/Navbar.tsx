@@ -3,7 +3,6 @@ import { classNames } from "primereact/utils";
 import { Ripple } from "primereact/ripple";
 import { Button } from "primereact/button";
 import { MutableRefObject, ReactNode, useRef } from "react";
-import { confirmDialog, ConfirmDialog } from "primereact/confirmdialog";
 import { Link } from "react-router-dom";
 
 type NodeRef = MutableRefObject<ReactNode>;
@@ -11,20 +10,8 @@ type NodeRef = MutableRefObject<ReactNode>;
 const Navbar: React.FC = () => {
     const menuRef = useRef<HTMLElement | null>(null);
 
-    const contactUsConfirm = () => {
-        confirmDialog({
-            message: 'Are you sure you want to proceed?',
-            header: 'Confirmation',
-            icon: 'pi pi-exclamation-triangle',
-            defaultFocus: 'accept',
-            accept: () => { },
-            reject: () => { }
-        });
-    };
-
     return (
         <div className="mx-0 flex align-items-center justify-content-between relative lg:static">
-            <ConfirmDialog />
             <Link to={'/'}>
                 <span className="flex align-items-center">
                     {/* <img
