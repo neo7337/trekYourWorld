@@ -14,7 +14,7 @@ import { TreksModule } from './treks/treks.module';
             imports: [ConfigModule],
             useFactory: async (configService: ConfigService) => ({
                 uri: configService.get<string>('DB_URI'),
-                dbName: configService.get<string>('DB_NAME'),
+                dbName: configService.get<string>('DB_NAME')
             }),
             inject: [ConfigService],
         }),

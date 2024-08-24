@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { TreksService } from './treks.service';
-import { TrekSearchDto } from '@/types/dto/TrekSearch.dto';
+import { TrekSearchDto } from '@/types/dto/treks/TrekSearch.dto';
 
 @Controller('treks')
 export class TreksController {
