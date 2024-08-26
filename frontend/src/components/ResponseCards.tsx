@@ -1,5 +1,5 @@
 import { Badge } from "primereact/badge";
-import { TrekSearchDto } from "../../../types/dto/TrekSearch.dto";
+import { TrekSearchDto } from "../../../types/dto/treks/TrekSearch.dto";
 import { Button } from "primereact/button";
 
 interface Props {

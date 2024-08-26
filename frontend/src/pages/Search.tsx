@@ -1,6 +1,6 @@
 import ApiService from "../services/api.service";
 import React, { useEffect, useRef, useState } from "react";
-import { TrekSearchDto } from "../../../types/dto/TrekSearch.dto";
+import { TrekSearchDto } from "../../../types/dto/treks/TrekSearch.dto";
 import { AutoComplete, AutoCompleteCompleteEvent } from "primereact/autocomplete";
 import { Toast } from "primereact/toast";
 import { Button } from "primereact/button";
