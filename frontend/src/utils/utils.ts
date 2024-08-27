@@ -1,18 +1,15 @@
-import { Toast, ToastMessage } from "primereact/toast";
+import { ToastMessage } from "primereact/toast";
+import { toastRef } from '../App';
 
-const showToast = (
-    toastRef: React.RefObject<Toast>,
-    severity: ToastMessage["severity"],
-    summary: string,
-    detail: string,
-    timeout: number
-) => {
-    toastRef.current?.show({
-        severity: severity,
-        summary: summary,
-        detail: detail,
-        life: timeout,
+const showToast = (severity: ToastMessage["severity"], summary: string, detail: string) => {
+  if (toastRef.current) {
+    toastRef.current.show({
+      severity: severity,
+      summary: summary,
+      detail: detail,
+      life: 5000, // Set toast duration
     });
+  }
 };
 
 export { showToast };

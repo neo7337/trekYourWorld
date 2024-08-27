@@ -2,10 +2,14 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import AppRouter from "./AppRouter";
 import Footer from "./components/Footer";
+import { Toast } from "primereact/toast";
+
+export const toastRef = React.createRef<Toast>();
 
 const App: React.FC = () => {
     return (
         <div className="surface-0 flex justify-content-center h-full">
+            <Toast ref={toastRef} position="bottom-right" />
             <div id="app" className="landing-wrapper overflow-hidden h-full">
                 <div id="topBar" className="topBar">
                     <Navbar />

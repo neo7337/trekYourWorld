@@ -18,7 +18,7 @@ const Search: React.FC = () => {
     const [loadingResults, setLoadingResults] = useState<boolean>(false);
 
     useEffect(() => {
-        svc.get(`api/v1/treks`).then((response) => setSearchItems(response));
+        svc.get(`api/v1/treks`).then((response) => setSearchItems(response.body));
     }, []);
 
     const search = (event: AutoCompleteCompleteEvent) => {
@@ -44,7 +44,7 @@ const Search: React.FC = () => {
             `api/v1/treks/search?trekName=${searchValue}`
         );
         setLoadingResults(false);
-        setResults(response);
+        setResults(response.body);
     };
 
     return (

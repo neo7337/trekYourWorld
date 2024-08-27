@@ -1,8 +1,13 @@
+import { showToast } from '../utils/utils';
+import ApiService from '../services/api.service';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { classNames } from 'primereact/utils';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+const svc = new ApiService();
 
 interface FormData {
     firstName: string
@@ -26,8 +31,8 @@ const Contact: React.FC = () => {
         email: '',
         message: ''
     })
-
     const [formErrors, setFormErrors] = useState<FormErrors>({})
+    const navigate = useNavigate();
 
     const validate = (): boolean => {
         const errors: FormErrors = {}
@@ -56,11 +61,16 @@ const Contact: React.FC = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     };
 
-    const handleContactUsFormSubmit = (e: FormEvent) => {
+    const handleContactUsFormSubmit = async (e: FormEvent) => {
         e.preventDefault()
         if (validate()) {
-            console.log(formData)
-            // invoke API
+            const response = await svc.post('api/v1/contact', formData)
+            if (response.status === 200) {
+                showToast('success', 'Success', response.body.message);
+                navigate('/');
+            } else {
+                showToast('error', 'Error', response.body);
+            }
         }
     }
 

@@ -11,7 +11,6 @@ export class ContactUsService {
     ) {}
 
     async createContactUsEntry(createContactUsDto: CreateContactUsDto) {
-        console.log(createContactUsDto)
         const createContactUsEntry = new this.contactUsModel(createContactUsDto)
         await createContactUsEntry.save()
     }
