@@ -6,7 +6,6 @@ class ApiService {
     }
 
     private async handleResponse(response: Response) {
-        console.log(response)
         if (!response.ok) {
             const err = await response.json();
             throw new Error(err.message || "Something went wrong");
