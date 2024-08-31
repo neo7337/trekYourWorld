@@ -19,7 +19,7 @@ const App: React.FC = () => {
                 <div id="topBar" className="topBar">
                     <Navbar />
                 </div>
-                <div id="container" className="app-container flex-grow-1">
+                <div id="container" className="app-container flex flex-column flex-grow-1">
                     <AppRouter />
                 </div>
                 <div id="footer" className="app-footer">

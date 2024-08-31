@@ -7,6 +7,10 @@ import { useEffect, useState } from "react";
 import TResponseCards from "../ResponseCards";
 import Filter from "./Filter";
 import { FilterInfo } from "../../utils/types";
+import { DataView } from 'primereact/dataview';
+import { Skeleton } from 'primereact/skeleton';
+import { Dropdown } from "primereact/dropdown";
+import { Card } from "primereact/card";
 
 const svc = new ApiService();
 
@@ -54,7 +58,7 @@ const Results: React.FC = () => {
             setFilteredResults(searchResponse.body)
             setLoadingResults(false);
         };
-        
+
         fetchData();
     }, []);
 
@@ -65,13 +69,13 @@ const Results: React.FC = () => {
             const diffs = uniqueDiff.map(item => ({ name: item, value: item }))
             const allDuration = results.flatMap(item => item.duration)
             const uniqueDur = Array.from(new Set(allDuration))
-            const durs = uniqueDur.map(item => ({ name: item, value: item}))
+            const durs = uniqueDur.map(item => ({ name: item, value: item }))
             const allLocation = results.flatMap(item => item.location)
             const uniqueLoc = Array.from(new Set(allLocation))
-            const locs = uniqueLoc.map(item => ({ name: item, value: item}))
+            const locs = uniqueLoc.map(item => ({ name: item, value: item }))
             const allOrganisers = results.flatMap(item => item.org)
             const uniqueOrg = Array.from(new Set(allOrganisers))
-            const orgs = uniqueOrg.map(item => ({ name: item, value: item}))
+            const orgs = uniqueOrg.map(item => ({ name: item, value: item }))
 
             const newFilterData: FilterInfo = {
                 organiser: orgs,
@@ -110,68 +114,51 @@ const Results: React.FC = () => {
         setFilteredResults(filteredData)
     }
 
-    return (
-        <div className="grid grid-nogutter overflow-hidden">
-            <div className="col-12 lg:col-2">
-                <Filter filterData={filterData} addedFilter={filterAddedCallback}/>
-            </div>
-            <div className="col-12 lg:col-10">
-                <div className="grid grid-nogutter">
-                    <div className="col-12 text-align-center text-white-alpha-90 text-900 font-bold text-6xl mb-4 text-center">
-                        Search Your Trek
-                    </div>
-                    <div className="col-12 text-700 text-xl mb-6 text-center line-height-3 w-6 m-auto">
-                        <div className="p-inputgroup">
-                            <AutoComplete
-                                aria-autocomplete="none"
-                                value={searchValue}
-                                suggestions={filteredSearch}
-                                completeMethod={search}
-                                onChange={(e) => setSearchValue(e.value)}
-                            />
-                            <Button
-                                icon="pi pi-search"
-                                onClick={handleSearch}
-                            />
-                        </div>
-                    </div>
+    const header = (
+        <div className="flex flex-column md:flex-row md:justify-content-between gap-2">
+            <Dropdown optionLabel="label" placeholder="Sort By Difficulty" />
+            <span className="p-input-icon-left">
+                <AutoComplete
+                    aria-autocomplete="none"
+                    value={searchValue}
+                    suggestions={filteredSearch}
+                    completeMethod={search}
+                    placeholder="Search Trek Name"
+                    onChange={(e) => setSearchValue(e.value)}
+                />
+                <Button
+                    icon="pi pi-search"
+                    onClick={handleSearch}
+                />
+            </span>
+        </div>
+    );
 
-                    <div className="col-12">
-                        <div className="grid grid-nogutter overflow-auto">
-                            {loadingResults ? (
-                                <div className="col-12 text-align-center text-900 font-bold text-2xl mb-4 text-center">
-                                    <ProgressSpinner />
-                                </div>
-                            ) : (filteredResults.length === 0 ? (
-                                <div className="col-12 text-align-center text-900 font-bold text-2xl mb-4 text-center">
-                                    No Results!
-                                </div>
-                            ) : (
-                                filteredResults.map(
-                                    (
-                                        result: TrekSearchDto,
-                                        index: number
-                                    ) => {
-                                        return (
-                                            <div
-                                                key={index}
-                                                className="col-12 sm:col-6 md:col-6 lg:col-3"
-                                            >
-                                                <div className="p-3 h-full">
-                                                    <TResponseCards
-                                                        data={result}
-                                                    />
-                                                </div>
-                                            </div>
-                                        );
-                                    }
-                                )
-                            )
-                            )}
-                        </div>
-                    </div>
+    const gridItem = (item: TrekSearchDto) => {
+        return (
+            <div className="col-12 sm:col-6 md:col-6 lg:col-3" >
+                <div className="p-3 h-full">
+                    <TResponseCards
+                        data={item}
+                    />
                 </div>
             </div>
+        )
+    }
+
+    const itemTemplate = (item: TrekSearchDto, layout: 'grid' | 'list' | (string & Record<string, unknown>)) => {
+        if (!item) {
+            return null;
+        }
+
+        return gridItem(item)
+    };
+
+    return (
+        <div className="overflow-hidden flex flex-column flex-grow-1">
+            <Card className="flex flex-column flex-grow-1" style={{ background: 'none' }}>
+                <DataView value={filteredResults} itemTemplate={itemTemplate} layout={'grid'} header={header} paginator rows={8} />
+            </Card>
         </div>
     )
 }

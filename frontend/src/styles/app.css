@@ -23,3 +23,20 @@
     width: 80% !important;
     margin: auto;
 }
+
+.p-card-body, .p-card-content, .p-dataview-grid {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.p-dataview-header, .p-paginator-bottom {
+    border-radius: var(--border-radius);
+}
+
+.p-dataview-content {
+    background: none;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}

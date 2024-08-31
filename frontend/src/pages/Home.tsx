@@ -11,17 +11,16 @@ const Home: React.FC = () => {
     }
 
     return (
-        <div className="flex justify-content-center flex-wrap overflow-hidden h-full"
-        >
-            <div style={{ minHeight: "250px" }} className="grid grid-nogutter text-800 flex align-items-center justify-content-center">
-                <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
+        <div className="m-auto flex flex-column justify-content-center flex-grow-1">
+            <div style={{ minHeight: "250px" }} className="grid grid-nogutter text-800 flex align-items-center">
+                <div className="col-12 md:col-6 p-6 text-center md:text-left">
                     <section className="text-white-alpha-90">
                         <span className="block text-xl font-italic mb-1">
                             go where the trail leads you
                         </span>
                         <div className="text-6xl font-bold mb-3">
                             trekYourWorld
-                        </div> <br/>
+                        </div> <br />
                         <div className="text-2xl font-bold mb-3">
                             Hey there, fellow thrill seeker!
                         </div>
