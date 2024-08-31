@@ -76,20 +76,20 @@ const Contact: React.FC = () => {
 
     return (
         <div className="contact-us flex flex-column pt-4 w-full overflow-hidden">
-            <div className="grid grid-nogutter surface-0 text-800">
+            <div className="grid grid-nogutter text-800">
                 <div className="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center">
-                    <section>
+                    <section className='text-white-alpha-90'>
                         <span className="block text-6xl font-bold mb-1">
                             We would love
                         </span>
-                        <div className="text-6xl text-primary font-bold mb-3">
+                        <div className="text-6xl font-bold mb-3">
                             to hear from you!!
                         </div>
                     </section>
                 </div>
                 <div className="col-12 md:col-6 overflow-hidden">
                     <div className="col-12">
-                        <div className="card">
+                        <div className="surface-0 p-4 border-round card">
                             <h2>Contact Us</h2>
                             <form onSubmit={handleContactUsFormSubmit}>
                                 <div className="p-fluid formgrid grid">

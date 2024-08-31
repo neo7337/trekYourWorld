@@ -93,7 +93,7 @@ const Results: React.FC = () => {
             `api/v1/treks/search?trekName=${searchValue}`
         );
         setLoadingResults(false);
-        setResults(response.body);
+        // setResults(response.body);
         setFilteredResults(response.body)
     };
 
@@ -111,13 +111,13 @@ const Results: React.FC = () => {
     }
 
     return (
-        <div className="grid grid-nogutter">
-            <div className="col-2">
+        <div className="grid grid-nogutter overflow-hidden">
+            <div className="col-12 lg:col-2">
                 <Filter filterData={filterData} addedFilter={filterAddedCallback}/>
             </div>
-            <div className="col-10">
+            <div className="col-12 lg:col-10">
                 <div className="grid grid-nogutter">
-                    <div className="col-10 text-align-center text-900 font-bold text-6xl mb-4 text-center">
+                    <div className="col-12 text-align-center text-white-alpha-90 text-900 font-bold text-6xl mb-4 text-center">
                         Search Your Trek
                     </div>
                     <div className="col-12 text-700 text-xl mb-6 text-center line-height-3 w-6 m-auto">
@@ -137,7 +137,7 @@ const Results: React.FC = () => {
                     </div>
 
                     <div className="col-12">
-                        <div className="grid grid-nogutter">
+                        <div className="grid grid-nogutter overflow-auto">
                             {loadingResults ? (
                                 <div className="col-12 text-align-center text-900 font-bold text-2xl mb-4 text-center">
                                     <ProgressSpinner />

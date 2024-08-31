@@ -28,7 +28,7 @@ const ResponseCards: React.FC<Props> = (props: Props) => {
 
     return (
         <div
-            className="shadow-2 p-3 h-full flex flex-column"
+            className="surface-0 shadow-2 p-3 h-full flex flex-column"
             style={{ borderRadius: "6px" }}
         >
             <div className="text-900 font-medium text-xl mb-2">
