@@ -1,6 +1,7 @@
 import { Badge } from "primereact/badge";
 import { TrekSearchDto } from "../../../types/dto/treks/TrekSearch.dto";
 import { Button } from "primereact/button";
+import { OrganisationsMap } from "../utils/enums";
 
 interface Props {
     data: TrekSearchDto;
@@ -35,7 +36,7 @@ const ResponseCards: React.FC<Props> = (props: Props) => {
                 {props.data.title}
             </div>
             <div className="text-600">
-                <span className="font-bold">Organiser:</span> {props.data.org}
+                <span className="font-bold">Organiser:</span> {OrganisationsMap[props.data.org]}
             </div>
             <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
             <div className="flex align-items-center">

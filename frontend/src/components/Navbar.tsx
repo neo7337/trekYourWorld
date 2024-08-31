@@ -14,10 +14,10 @@ const Navbar: React.FC = () => {
             <Link to={'/'}>
                 <span className="flex align-items-center">
                     <img
-                    src={"/logo.png"}
-                    alt="trekYourWorld"
-                    height="50"
-                    className="mr-0 lg:mr-2"
+                        src={"/logo.png"}
+                        alt="trekYourWorld"
+                        height="50"
+                        className="mr-0 lg:mr-2"
                     />
                 </span>
             </Link>
