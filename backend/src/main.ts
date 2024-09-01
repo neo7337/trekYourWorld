@@ -6,8 +6,6 @@ import * as path from 'path';
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
     app.enableCors();
-    
-    console.log(__dirname)
 
     // serve static frontend
     app.useStaticAssets(path.join(__dirname, '../../..', 'public'))
