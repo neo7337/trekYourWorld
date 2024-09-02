@@ -111,7 +111,7 @@ const Results: React.FC = () => {
     };
 
     const filterAddedCallback = (addedFilter: any) => {
-        const filteredData = results.filter(result => {
+        const filteredData = filteredResults.filter(result => {
             return (
                 (addedFilter.organiser === null || addedFilter.organiser.length === 0 || addedFilter.organiser.includes(result.org)) &&
                 (addedFilter.location === null || addedFilter.location.length === 0 || addedFilter.location.includes(result.location)) &&

@@ -21,6 +21,7 @@ yarn build
 cd ..
 
 echo "Copying frontend build to backend"
+rm -R ./backend/public
 if [ -d "./backend/public" ]; then
     echo "backend public exists"
     cp -R ./frontend/build/* ./backend/public
