@@ -34,3 +34,4 @@ echo "Building backend"
 cd ./backend
 yarn install --frozen-lockfile
 docker build . -t neo73/trekyourworld:$2 --target $1
+docker tag neo73/trekyourworld:$2 neo73/trekyourworld:latest
