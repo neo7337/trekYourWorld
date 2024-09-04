@@ -36,7 +36,7 @@ WORKDIR /app
 RUN apk add --no-cache libc6-compat
 
 # Set to production environment
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 # Re-create non-root user for Docker
 RUN addgroup -S appuser \
