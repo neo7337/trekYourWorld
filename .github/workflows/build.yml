@@ -1,0 +1,34 @@
+name: Build
+
+# Trigger workflow manually
+on:
+    workflow_dispatch:
+
+jobs:
+    build_job:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checkout the repository
+            - name: Checkout repository
+              uses: actions/checkout@v3
+
+            # Get the latest tag version and pass it to build.sh
+            - name: Get latest tag
+              id: versioning  # Set ID to reference later
+              run: |
+                # Get the latest tag (assuming tags follow semantic versioning like v1.0.0)
+                latest_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+            
+                # Output the latest tag
+                echo "Latest Tag: $latest_tag"
+                echo "::set-output name=latest_tag::$latest_tag"
+
+            # Set execute permission for the build script (if necessary)
+            - name: Make build script executable
+              run: chmod +x ./scripts/build.sh
+
+            # add a step to read the tags from the push and send to the script
+            # Run the build script
+            - name: Run the build script
+              run: ./scripts/build.sh production ${{ steps.versioning.outputs.latest_tag }}

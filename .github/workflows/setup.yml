@@ -1,0 +1,44 @@
+name: Setup Remote Server
+
+# Trigger workflow manually
+on:
+    workflow_dispatch:
+
+jobs:
+    replace_and_copy:
+        runs-on: ubuntu-latest
+
+        environment: production
+
+        steps:
+            # Checkout the repository
+            - name: Checkout repository
+              uses: actions/checkout@v3
+            
+            # Start ssh-agent and add the SSH key with passphrase
+            - name: Add SSH key
+              run: |
+                echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+                chmod 600 private_key
+                eval $(ssh-agent -s)
+                echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add private_key
+              env:
+                SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+
+            # Replace environment variables in docker-compose.yml and nginx.conf
+            - name: Replace environment variables in docker-compose.yml
+              run: |
+                sed -i 's|${DB_URI}|'"${{ secrets.DB_URI }}"'|g' ./scripts/docker-compose.yml
+                sed -i 's|${DB_NAME}|'"${{ secrets.DB_NAME }}"'|g' ./scripts/docker-compose.yml
+              shell: bash
+
+            - name: Replace environment variables in nginx.conf
+              run: |
+                sed -i 's|${UPSTREAM_SERVER}|'"${{ secrets.UPSTREAM_SERVER }}"'|g' ./scripts/nginx.conf
+                sed -i 's|${PROXY_PASS}|'"${{ secrets.PROXY_PASS }}"'|g' ./scripts/nginx.conf
+              shell: bash
+
+            # Copy files to remote server using scp
+            - name: Copy files to remote server
+              run: |
+                scp -o StrictHostKeyChecking=no ./scripts/docker-compose.yml ./scripts/nginx.conf ${{ secrets.REMOTE_SERVER }}:/home/app

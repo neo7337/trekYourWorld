@@ -17,7 +17,15 @@ fi
 
 echo "Building Frontend"
 cd ./frontend
-yarn build
+if [ -d "./build" ]; then
+    rm -r build
+fi
+echo "building $1 build"
+if [ $1 == "production" ]; then
+    yarn build:prod
+else
+    yarn build
+fi
 cd ..
 
 echo "Copying frontend build to backend"
@@ -35,3 +43,7 @@ cd ./backend
 yarn install --frozen-lockfile
 docker build . -t neo73/trekyourworld:$2 --target $1
 docker tag neo73/trekyourworld:$2 neo73/trekyourworld:latest
+
+echo "Pushing images to docker registry"
+docker push neo73/trekyourworld:$2
+docker push neo73/trekyourworld:latest

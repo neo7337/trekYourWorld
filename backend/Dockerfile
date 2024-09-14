@@ -30,7 +30,7 @@ CMD ["node", "dist/backend/src/main.js"]
 #
 # 🚀 Production
 #
-FROM node:18-alpine AS prod
+FROM node:18-alpine AS production
 
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
@@ -45,8 +45,8 @@ RUN addgroup -S appuser \
 RUN chown -R appuser /app
 
 # Copy only the necessary files
-COPY /app/dist dist
-COPY /app/node_modules node_modules
+COPY ./dist /app/dist
+COPY ./public /app/public
 COPY ./node_modules /app/node_modules
 
 # Set Docker as non-root user

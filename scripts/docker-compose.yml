@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  webapp:
+    image: neo73/trekyourworld:latest
+    container_name: webapp
+    networks:
+      - app_network
+    expose:
+      - "8181"
+    environment:
+      - DB_URI=${DB_URI}
+      - DB_NAME=${DB_NAME}
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - webapp
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
