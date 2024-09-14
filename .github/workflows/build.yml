@@ -12,6 +12,8 @@ jobs:
             # Checkout the repository
             - name: Checkout repository
               uses: actions/checkout@v3
+              with:
+                fetch-depth: 0 # Fetch all history including tags
 
             # Get the latest tag version and pass it to build.sh
             - name: Get latest tag

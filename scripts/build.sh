@@ -17,6 +17,7 @@ fi
 
 echo "Building Frontend"
 cd ./frontend
+yarn install --frozen-lockfile
 if [ -d "./build" ]; then
     rm -r build
 fi
