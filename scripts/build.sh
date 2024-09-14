@@ -23,9 +23,9 @@ if [ -d "./build" ]; then
 fi
 echo "building $1 build"
 if [ $1 == "production" ]; then
-    yarn build:prod
+    REACT_APP_URL="" yarn build:prod
 else
-    yarn build
+    REACT_APP_URL="" yarn build
 fi
 cd ..
 
