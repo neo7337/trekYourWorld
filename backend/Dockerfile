@@ -45,9 +45,9 @@ RUN addgroup -S appuser \
 RUN chown -R appuser /app
 
 # Copy only the necessary files
-COPY ./dist /app
-COPY ./public /app
-COPY ./node_modules /app
+COPY ./dist /app/dist
+COPY ./public /app/public
+COPY ./node_modules /app/node_modules
 
 # Set Docker as non-root user
 USER appuser

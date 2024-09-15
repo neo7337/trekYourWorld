@@ -15,6 +15,10 @@ if [ $# -lt 2 ]; then
     exit 1
 fi
 
+echo "Input Parameters"
+echo $1
+echo $2
+
 echo "Building Frontend"
 cd ./frontend
 yarn install --frozen-lockfile
@@ -40,7 +44,12 @@ fi
 
 echo "Building backend"
 cd ./backend
+
+echo "install node modules"
 yarn install --frozen-lockfile
+
+echo "building nestjs build"
+yarn build
 
 docker build . -t neo73/trekyourworld:$2 --target $1
 docker tag neo73/trekyourworld:$2 neo73/trekyourworld:latest
