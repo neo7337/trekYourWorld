@@ -1,26 +1,24 @@
 name: Deploy to DigitalOcean
 
 on:
-    workflow_dispatch:
-    # workflow_run:
-    # workflows: ["Build"]
-    # types:
-    #     - completed
+    # workflow_dispatch:
+    workflow_run:
+        workflows: ["Build"]
+        types:
+            - completed
 
 jobs:
     deploy:
         runs-on: ubuntu-latest
 
         # Ensure the deploy job runs only if the build workflow succeeded
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
         environment: production
 
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
-
-            - name: Set up Docker
-              uses: docker/setup-buildx-action@v2
 
             # Start ssh-agent and add the SSH key with passphrase
             - name: Add SSH key
@@ -34,4 +32,4 @@ jobs:
 
             - name: Deploy with Docker Compose
               run: |
-                  ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_SERVER }} "cd /path/to/your/app && docker-compose down && docker-compose rm -f && docker-compose up -d"
+                  ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_SERVER }} "cd /home/app && docker-compose down && docker rmi -f $(docker images -aq) && docker-compose up -d"
