@@ -1,4 +1,4 @@
-name: Deploy to DigitalOcean
+name: Deploy Application
 
 on:
     # workflow_dispatch:
@@ -29,7 +29,10 @@ jobs:
                   echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add private_key
               env:
                   SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
-
+            - name: Add Known Hosts
+              run: ssh-keyscan -H ${{ secrets.REMOTE_IP }} >> ~/.ssh/known_hosts
             - name: Deploy with Docker Compose
               run: |
                   ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_SERVER }} "cd /home/app && docker-compose down && docker rmi -f $(docker images -aq) && docker-compose up -d"
+              env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
