@@ -108,11 +108,8 @@ const Search: React.FC = () => {
     }
 
     const filterAddedCallback = async (addedFilter: any) => {
-        console.log(addedFilter)
         setLoadingResults(true)
-        // invoke backend api to filter based on added filter
-        const response = await svc.get(``)
-        // set data
+        const response = await svc.post(`api/v1/treks/filter`, addedFilter)
         setLoadingResults(false)
         setFilteredResults(response.body)
     }
@@ -192,6 +189,8 @@ const Search: React.FC = () => {
                                 disabled={hasSearched} />
                             <label htmlFor="ms-cities">Difficulty</label>
                         </FloatLabel>
+                        <span style={{ color: "#17a2b8" }}>Showing { filteredResults.length } results</span>
+                        {/* <Button label="Apply Filter" severity="info"  /> */}
                     </div>
                 </Card>
             </div>
