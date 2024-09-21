@@ -49,7 +49,7 @@ const Results: React.FC<Props> = (props: Props) => {
     }
 
     const header = (
-        <div className="flex flex-column md:flex-row md:justify-content-between gap-2 p-2">
+        <div className="flex flex-column md:flex-row-reverse md:justify-content-between gap-2 p-2">
             <div className="flex flex-column md:flex-row md:flex-wrap gap-2">
                 <Button label={getSortLabel()} icon={getSortIcon()} severity="info" text onClick={handleSorting} />
             </div>
