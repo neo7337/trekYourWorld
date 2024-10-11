@@ -2,6 +2,8 @@ import { Badge } from "primereact/badge";
 import { TrekSearchDto } from "../../../types/dto/treks/TrekSearch.dto";
 import { Button } from "primereact/button";
 import { OrganisationsMap } from "../utils/enums";
+import { Tooltip } from "primereact/tooltip";
+import { MessageConstants } from "../utils/constants";
 
 interface Props {
     data: TrekSearchDto;
@@ -32,6 +34,7 @@ const ResponseCards: React.FC<Props> = (props: Props) => {
             className="surface-0 shadow-2 p-3 h-full flex flex-column"
             style={{ borderRadius: "6px" }}
         >
+            <Tooltip target=".price-information-icon" />
             <div className="text-900 font-medium text-xl mb-2">
                 {props.data.title}
             </div>
@@ -39,8 +42,13 @@ const ResponseCards: React.FC<Props> = (props: Props) => {
                 <span className="font-bold">Organiser:</span> {OrganisationsMap[props.data.org]}
             </div>
             <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
-            <div className="flex align-items-center">
-                <span className="font-bold text-2xl text-900">{formatCost(props.data.cost)}</span>
+            <div className="flex justify-content-between flex-wrap">
+                <div className="flex align-items-center justify-content-center">
+                    <span className="font-bold text-2xl text-900">{formatCost(props.data.cost)} + GST</span>
+                </div>
+                <div className="flex align-items-center justify-content-center cursor-pointer">
+                    <i className="pi pi-info-circle price-information-icon" style={{ fontSize: '1.5rem' }} data-pr-tooltip={MessageConstants.PRICE_INFORMATION} data-pr-position="top"></i>
+                </div>
             </div>
             <hr className="my-3 mx-0 border-top-1 border-bottom-none border-300" />
             <ul className="list-none p-0 m-0 flex-grow-1">
@@ -55,6 +63,10 @@ const ResponseCards: React.FC<Props> = (props: Props) => {
                 <li className="flex align-items-center mb-3">
                     <i className="pi pi-clock text-green-500 mr-2"></i>
                     <span className="font-bold">Duration: </span> <span style={{ marginLeft: '0.5rem' }}>{props.data.duration} days</span>
+                </li>
+                <li className="flex align-items-center mb-3">
+                    <i className="pi pi-clock text-green-500 mr-2"></i>
+                    <span className="font-bold">Distance: </span> <span style={{ marginLeft: '0.5rem' }}>{props.data.distance === "" ? 'NA' : props.data.distance + ' KM'}</span>
                 </li>
                 <li className="flex align-items-center mb-3">
                     <i className="pi pi-wrench text-green-500 mr-2"></i>

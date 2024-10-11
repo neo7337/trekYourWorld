@@ -8,4 +8,5 @@ export type TrekSearchDto = {
     cost: string;
     difficulty: string[];
     location: string;
+    distance: string;
 };

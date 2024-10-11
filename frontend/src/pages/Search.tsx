@@ -37,10 +37,9 @@ const Search: React.FC = () => {
             const allDifficulty = results.flatMap(item => item.difficulty)
             const uniqueDiff = Array.from(new Set(allDifficulty)).sort()
             const diffs = uniqueDiff.map(item => ({ name: DifficultyMap[item], value: item }))
-            // TODO :: add sorting, ' days' to the values, add support to search with that string as well
             const allDuration = results.flatMap(item => item.duration)
-            const uniqueDur = Array.from(new Set(allDuration))
-            const durs = uniqueDur.map(item => ({ name: item, value: item }))
+            const uniqueDur = Array.from(new Set(allDuration)).map(Number).sort((a, b) => a-b).map(num => `${num} days`)
+            const durs = uniqueDur.map(item => ({ name: item, value: item.replace(' days', '') }))
             const allLocation = results.flatMap(item => item.location)
             const uniqueLoc = Array.from(new Set(allLocation)).sort()
             const locs = uniqueLoc.map(item => ({ name: item, value: item }))

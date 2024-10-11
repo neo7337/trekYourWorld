@@ -58,7 +58,8 @@ export class TreksService {
                     duration: '$treks.duration',
                     cost: '$treks.cost',
                     difficulty: '$treks.difficulty',
-                    location: '$treks.location'
+                    location: '$treks.location',
+                    distance: '$treks.distance'
                 },
             },
         ];
@@ -74,7 +75,8 @@ export class TreksService {
                     duration: trekInfo.duration,
                     cost: trekInfo.cost,
                     difficulty: trekInfo.difficulty,
-                    location: trekInfo.location
+                    location: trekInfo.location,
+                    distance: trekInfo.distance
                 },
         );
         return _.sortBy(mappedResponse, 'title');
@@ -103,7 +105,8 @@ export class TreksService {
                     duration: '$treks.duration',
                     cost: '$treks.cost',
                     difficulty: '$treks.difficulty',
-                    location: '$treks.location'
+                    location: '$treks.location',
+                    distance: '$treks.distance'
                 },
             },
         ];
@@ -119,7 +122,8 @@ export class TreksService {
                     duration: trekInfo.duration,
                     cost: trekInfo.cost,
                     difficulty: trekInfo.difficulty,
-                    location: trekInfo.location
+                    location: trekInfo.location,
+                    distance: trekInfo.distance
                 },
         );
     }
@@ -144,7 +148,8 @@ export class TreksService {
                     duration: '$treks.duration',
                     cost: '$treks.cost',
                     difficulty: '$treks.difficulty',
-                    location: '$treks.location'
+                    location: '$treks.location',
+                    distance: '$treks.distance'
                 },
             },
         ];
@@ -160,7 +165,8 @@ export class TreksService {
                     duration: trekInfo.duration,
                     cost: trekInfo.cost,
                     difficulty: trekInfo.difficulty,
-                    location: trekInfo.location
+                    location: trekInfo.location,
+                    distance: trekInfo.distance
                 },
         );
     }
