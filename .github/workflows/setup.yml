@@ -16,14 +16,12 @@ jobs:
               uses: actions/checkout@v3
 
             # Start ssh-agent and add the SSH key with passphrase
-            - name: Add SSH key
-              run: |
-                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
-                  chmod 600 private_key
-                  eval $(ssh-agent -s)
-                  echo "${{ secrets.SSH_PASSPHRASE }}" | ssh-add private_key
-              env:
-                  SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
+            - name: Set up SSH
+              uses: webfactory/ssh-agent@v0.7.0
+              with:
+                ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            - name: Add Known Hosts
+              run: ssh-keyscan -H ${{ secrets.REMOTE_IP }} >> ~/.ssh/known_hosts
 
             # Replace environment variables in docker-compose.yml and nginx.conf
             - name: Replace environment variables in docker-compose.yml
@@ -41,4 +39,6 @@ jobs:
             # Copy files to remote server using scp
             - name: Copy files to remote server
               run: |
-                  scp -o StrictHostKeyChecking=no ./scripts/docker-compose.yml ./scripts/nginx.conf ${{ secrets.REMOTE_SERVER }}:/home/app
+                  scp -o StrictHostKeyChecking=no ./scripts/docker-compose.yml ./scripts/nginx.conf ${{ secrets.REMOTE_IP }}:/home/app
+              env:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
