@@ -39,6 +39,6 @@ jobs:
             # Copy files to remote server using scp
             - name: Copy files to remote server
               run: |
-                  scp -o StrictHostKeyChecking=no ./scripts/docker-compose.yml ./scripts/nginx.conf ${{ secrets.REMOTE_IP }}:/home/app
+                  scp -o StrictHostKeyChecking=no ./scripts/docker-compose.yml ./scripts/nginx.conf ${{ secrets.REMOTE_SERVER }}:/home/app
               env:
                 SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
